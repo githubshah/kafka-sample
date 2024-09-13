@@ -1,37 +1,23 @@
 package com.kafka.sample;
 
-import lombok.extern.java.Log;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.util.Iterator;
-
 @Service
-@Log
 public class KafkaConsumerService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumerService.class);
+    @KafkaListener(topics = "my-topic-01", groupId = "my-cg-01")
+    public void listenGroup1(TaskStatus message) {
+        System.out.println("Received message in group1: " + message);
+    }
 
-    @Autowired
-    KafkaConsumer<String, TaskStatus> kafkaConsumer;
+    @KafkaListener(topics = "my-topic-01", groupId = "my-cg-01")
+    public void listenGroup2(TaskStatus message) {
+        System.out.println("Received message in group2: " + message);
+    }
 
-    public TaskStatus getLatestTaskStatus(String taskId) {
-
-        ConsumerRecord<String, TaskStatus> latestUpdate = null;
-        ConsumerRecords<String, TaskStatus> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(1000));
-        if (!consumerRecords.isEmpty()) {
-            Iterator itr = consumerRecords.records(taskId).iterator();
-            while (itr.hasNext()) {
-                latestUpdate = (ConsumerRecord<String, TaskStatus>) itr.next();
-            }
-            LOGGER.info("Latest updated status : " + latestUpdate.value());
-        }
-        return latestUpdate != null ? latestUpdate.value() : null;
+    @KafkaListener(topics = "my-topic-01", groupId = "my-cg-01")
+    public void listenGroup3(TaskStatus message) {
+        System.out.println("Received message in group3: " + message);
     }
 }
