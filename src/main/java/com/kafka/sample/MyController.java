@@ -22,13 +22,11 @@ public class MyController {
 
     @GetMapping
     public ResponseEntity<String> publishMessage() {
-
-        for (int i = 1; i <= 10000; i++) {
-            kafkaProducerService
-                    .send("my-topic-01", "demo-key" + i,
-                            new TaskStatus(i + "-taskId" + LocalTime.now().getSecond(), "taskName", 50.0f,
-                                    TaskStatus.Status.RUNNING));
-        }
+        int i = 100;
+        kafkaProducerService
+                .send("my-topic-01", "demo-key" + i,
+                        new TaskStatus(i + "-taskId" + LocalTime.now().getSecond(), "taskName", 50.0f,
+                                TaskStatus.Status.RUNNING));
         return ResponseEntity.ok("pushed");
     }
 
