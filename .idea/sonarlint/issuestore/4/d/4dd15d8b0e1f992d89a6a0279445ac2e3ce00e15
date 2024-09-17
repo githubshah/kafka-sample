@@ -1,0 +1,15 @@
+
+:
+java:S2629"$Invoke method(s) only conditionally.(€½ç÷
+?
+java:S2629"$Invoke method(s) only conditionally.(šÅ­ùÿÿÿÿ
+W
+java:S3457"AFormat specifiers should be used instead of string concatenation.(€½ç÷
+\
+java:S3457"AFormat specifiers should be used instead of string concatenation.(šÅ­ùÿÿÿÿ
+P
+java:S1128"3Remove this unused import 'lombok.extern.java.Log'.(Ë¡±ì8àú•İ2
+l
+java:S1128"ORemove this unused import 'org.springframework.kafka.annotation.KafkaListener'.(ıª«¬8àú•İ2
+g
+java:S1128	"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ8áú•İ2
